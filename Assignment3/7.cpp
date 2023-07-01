@@ -1,16 +1,11 @@
 #include <iostream>
 #include <vector>
 using namespace std;
-
-string getRange(int start, int end) {
-    if (start == end) {
-        return to_string(start);
-    } else {
-        return to_string(start) + "->" + to_string(end);
-    }
+vector<int> getRange(int start, int end) {
+    return {start, end};
 }
-vector<string> findMissingRanges(vector<int>& nums, int lower, int upper) {
-    vector<string> result;
+vector<vector<int>> findMissingRanges(vector<int>& nums, int lower, int upper) {
+    vector<vector<int>> result;
     int start = lower;
 
     for (int num : nums) {
@@ -28,16 +23,20 @@ vector<string> findMissingRanges(vector<int>& nums, int lower, int upper) {
 }
 
 
+
 int main() {
     vector<int> nums = {0, 1, 3, 50, 75};
     int lower = 0;
     int upper = 99;
 
-    vector<string> result = findMissingRanges(nums, lower, upper);
+    vector<vector<int>> result = findMissingRanges(nums, lower, upper);
 
     // Print the result
-    for (const string& range : result) {
-        cout << range << " ";
+    for (int i = 0; i < result.size(); i++) {
+        cout << "[" << result[i][0] << "," << result[i][1] << "]";
+        if (i < result.size() - 1) {
+            cout << ",";
+        }
     }
     cout << endl;
 
